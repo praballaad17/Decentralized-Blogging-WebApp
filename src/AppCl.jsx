@@ -37,9 +37,9 @@ class Appcl extends Component {
       //Fetch Contract
       const abi = BlogFactory.abi
       const address = networkData.address
-      const contract = web3.eth.Contract(abi, address)
-      this.setState({ contract })
-      console.log(contract)
+      // const contract = new web3.eth.Contract(abi, address)
+      // this.setState({ contract })
+      // console.log(contract)
       //const memeHash = await contract.methods.get().call()
       //this.setState({memeHash})
     }

@@ -17,7 +17,7 @@ export default function Write() {
       //Fetch Contract
       const abi = BlogFactory.abi
       const address = networkData.address
-      const contract = web3.eth.Contract(abi, address)
+      const contract = new web3.eth.Contract(abi, address)
       console.log(contract)
       //   this.setState({contract})
       //   //console.log(contract)

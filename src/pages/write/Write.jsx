@@ -1,32 +1,32 @@
 import { useState } from "react";
 import "./write.css";
-// import Web3 from 'web3';
-// import BlogFactory from './abis/BlogFactory.json'
-
+import Web3 from 'web3';
+import BlogFactory from '../../abis/BlogFactory.json'
 export default function Write() {
   const [title, setTitle] = useState("");
   const [para, setPara] = useState("");
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const web3 = window.web3
+    const networkId = await web3.eth.net.getId()
+    console.log(networkId)
+    const networkData = BlogFactory.networks[networkId]
 
-    // const networkId = await web3.eth.net.getId()
-    // console.log(networkId)
-    // const networkData = BlogFactory.networks[networkId]
-
-    // if(networkData){
-    //   //Fetch Contract
-    //   const abi = BlogFactory.abi
-    //   const address = networkData.address
-    //   const contract =  web3.eth.Contract(abi,address)
-    //   this.setState({contract})
-    //   //console.log(contract)
-    //   //const memeHash = await contract.methods.get().call()
-    //   //this.setState({memeHash})
-    // }
-    // else{
-    //   window.alert("Smart contract not deployed to detected network")
-    // }
+    if (networkData) {
+      //Fetch Contract
+      const abi = BlogFactory.abi
+      const address = networkData.address
+      const contract = web3.eth.Contract(abi, address)
+      console.log(contract)
+      //   this.setState({contract})
+      //   //console.log(contract)
+      //   //const memeHash = await contract.methods.get().call()
+      //   //this.setState({memeHash})
+    }
+    else {
+      window.alert("Smart contract not deployed to detected network")
+    }
 
 
     console.log(title, para);

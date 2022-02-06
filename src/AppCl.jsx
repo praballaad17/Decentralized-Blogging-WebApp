@@ -35,8 +35,8 @@ class Appcl extends Component {
 
     if (networkData) {
       //Fetch Contract
-      const abi = BlogFactory.abi
-      const address = networkData.address
+      // const abi = BlogFactory.abi
+      // const address = networkData.address
       // const contract = new web3.eth.Contract(abi, address)
       // this.setState({ contract })
       // console.log(contract)

@@ -19,6 +19,11 @@ export default function Write() {
       const address = networkData.address
       const contract = new web3.eth.Contract(abi, address)
       console.log(contract)
+      contract.methods.createBlog(title,para).call()
+      //const response = await contract.methods.getBlog(0).call()
+      
+      //console.log(response)
+
       //   this.setState({contract})
       //   //console.log(contract)
       //   //const memeHash = await contract.methods.get().call()

@@ -9,7 +9,7 @@ import "./homepage.css";
 export default function Homepage() {
   const location = useLocation();
   console.log(location);
-  const { blogFactoryContract } = useContract()
+  const { blogFactoryContract, userAccount } = useContract()
 
   console.log(blogFactoryContract)
 
@@ -17,6 +17,14 @@ export default function Homepage() {
     if (!blogFactoryContract) return
     const count = await blogFactoryContract.methods.getBlogCount().call()
     console.log(count)
+
+    // blogFactoryContract.methods.getAllBlogs().call({ from: userAccount.account }).then(r => {
+    //   console.log(r)
+    // })
+
+    const blog = await blogFactoryContract.methods.getBlog(0).call()
+    console.log(blog)
+
   }, [blogFactoryContract])
 
   return (

@@ -14,14 +14,11 @@ import { ContractProvider } from './context/ContractProvider';
 
 export default function App() {
     const currentUser = true;
-    const [userAccount, setUserAccount] = useState()
 
-
-    console.log(userAccount)
 
     return (
         <div>
-            <ContractProvider setUserAccount={setUserAccount}>
+            <ContractProvider>
                 <Router>
                     <Topbar />
                     <Switch>

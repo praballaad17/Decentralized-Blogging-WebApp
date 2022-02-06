@@ -1,4 +1,7 @@
+// SPDX-License-Identifier: UNLICENSED
+
 pragma solidity >=0.4.22 <0.9.0;
+pragma experimental ABIEncoderV2;
 
 contract BlogFactory {
     uint256 blogCount;
@@ -74,5 +77,9 @@ contract BlogFactory {
 
     function getBlogCount() public view returns (uint256) {
         return blogCount;
+    }
+
+    function getAllBlogs() public view returns (Blog[] memory) {
+        return blogs;
     }
 }

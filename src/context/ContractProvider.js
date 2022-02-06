@@ -7,7 +7,8 @@ const ContractContext = createContext();
 export function useContract() {
     return useContext(ContractContext)
 }
-export function ContractProvider({ children, setUserAccount }) {
+export function ContractProvider({ children }) {
+    const [userAccount, setUserAccount] = useState()
     const [blogFactoryContract, setblogFactoryContract] = useState()
 
     // const web3 = window.web3
@@ -67,7 +68,8 @@ export function ContractProvider({ children, setUserAccount }) {
 
 
     const value = {
-        blogFactoryContract
+        blogFactoryContract,
+        userAccount
     }
     return (
         <ContractContext.Provider value={value}>

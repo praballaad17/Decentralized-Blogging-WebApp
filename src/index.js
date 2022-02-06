@@ -5,7 +5,8 @@ import Appcl from './AppCl';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Appcl />
+    {/* <Appcl /> */}
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

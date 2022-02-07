@@ -27,6 +27,8 @@ contract BlogFactory {
     // declare mappings here
     mapping(uint256 => address) public blogToOwner;
     mapping(address => uint256) public userBlogCount;
+    mapping (uint => Blog) public blogHashToBlog;
+
 
     function _publishBlog(
         string memory _title,
@@ -35,6 +37,7 @@ contract BlogFactory {
     ) private {
         blogs.push(Blog(_title, _content, msg.sender, _blogHash));
         uint256 id = blogs.length - 1;
+        blogHashToBlog[_blogHash]= blogs[id];
         blogToOwner[id] = msg.sender;
         userBlogCount[msg.sender]++;
         blogCount += 1;
@@ -81,5 +84,9 @@ contract BlogFactory {
 
     function getAllBlogs() public view returns (Blog[] memory) {
         return blogs;
+    }
+
+    function getBlogFromBlogHash(uint _blogHash) public view returns(Blog memory){
+        return blogHashToBlog[_blogHash];
     }
 }

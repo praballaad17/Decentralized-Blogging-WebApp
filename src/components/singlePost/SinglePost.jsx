@@ -1,13 +1,22 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./singlePost.css";
 
 export default function SinglePost({ blog }) {
   console.log(blog)
-  const blogobj = {
-    title: blog[0],
-    content: blog[1],
-    author: blog[2]
-  }
+  const [blogobj, setBlogobj] = useState({})
+
+  useEffect(() => {
+    if (!blog) return
+    if (blog) {
+      setBlogobj({
+        title: blog[0],
+        content: blog[1],
+        author: blog[2]
+      })
+    }
+  }, [blog])
+
   return (
     <div className="singlePost">
       <div className="singlePostWrapper">
@@ -17,7 +26,7 @@ export default function SinglePost({ blog }) {
           alt=""
         />
         <h1 className="singlePostTitle">
-          {blogobj.title}
+          {blogobj?.title}
           <div className="singlePostEdit">
             <i className="singlePostIcon far fa-edit"></i>
             <i className="singlePostIcon far fa-trash-alt"></i>
@@ -28,14 +37,14 @@ export default function SinglePost({ blog }) {
             Author:
             <b className="singlePostAuthor">
               <Link className="link" to="/posts?username=Safak">
-                {blogobj.author}
+                {blogobj?.author}
               </Link>
             </b>
           </span>
           <span>1 day ago</span>
         </div>
         <p className="singlePostDesc">
-          {blogobj.content}
+          {blogobj?.content}
         </p>
       </div>
     </div>

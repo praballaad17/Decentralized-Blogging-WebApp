@@ -27,8 +27,12 @@ export default function Single() {
   console.log(blog)
   return (
     <div className="single">
-      <SinglePost blog={blog} />
-      <Sidebar />
+      {blog ? <>
+        <SinglePost blog={blog} />
+        <Sidebar />
+      </>
+        : <></>
+      }
     </div>
   );
 }

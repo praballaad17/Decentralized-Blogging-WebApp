@@ -102,9 +102,9 @@ contract BlogFactory {
     function getBlogFromBlogHash(string memory _blogHash)
         public
         view
-        returns (Blog memory)
+        returns (string memory, string memory, address)
     {
         uint256 bloghashInt = st2num(_blogHash);
-        return blogHashToBlog[bloghashInt];
+        return (blogHashToBlog[bloghashInt].title, blogHashToBlog[bloghashInt].content,blogHashToBlog[bloghashInt].publisher) ;
     }
 }

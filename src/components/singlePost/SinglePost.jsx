@@ -27,10 +27,10 @@ export default function SinglePost({ blog }) {
         />
         <h1 className="singlePostTitle">
           {blogobj?.title}
-          <div className="singlePostEdit">
+          {/* <div className="singlePostEdit">
             <i className="singlePostIcon far fa-edit"></i>
             <i className="singlePostIcon far fa-trash-alt"></i>
-          </div>
+          </div> */}
         </h1>
         <div className="singlePostInfo">
           <span>

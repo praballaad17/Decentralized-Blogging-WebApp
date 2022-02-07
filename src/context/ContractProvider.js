@@ -57,7 +57,9 @@ export function ContractProvider({ children }) {
                 //this.setState({memeHash})
             }
             else {
-                window.alert("Smart contract not deployed to detected network")
+                // window.alert("Smart contract not deployed to detected network")
+                console.log("Smart contract not deployed to detected network")
+
             }
         }
 

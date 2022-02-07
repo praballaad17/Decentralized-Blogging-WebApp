@@ -10,12 +10,12 @@ export default function Posts() {
   useEffect(() => {
     if (!blogFactoryContract) return
 
-    blogFactoryContract.methods.getAllBlogs().call({ from: userAccount.account }).then(r => {
-      console.log(r)
-      setPost(r)
+    blogFactoryContract.methods.getAllBlogs().call({ from: userAccount.account }).then(posts => {
+      setPost(posts)
     })
 
   }, [blogFactoryContract])
+
   return (
     <div className="posts">
       {posts && posts.map(post => (

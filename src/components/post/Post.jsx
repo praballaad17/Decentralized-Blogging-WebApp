@@ -3,13 +3,9 @@ import "./post.css";
 
 export default function Post({ post }) {
 
-  console.log(post)
-  const handleClick = () => {
-    console.log("click")
-  }
-
+  console.log(post.blogHash)
   return (
-    <div className="post" onClick={handleClick}>
+    <div className="post">
 
       {/* <img
         className="postImg"
@@ -30,7 +26,7 @@ export default function Post({ post }) {
           </span>
         </div>
         <span className="postTitle">
-          <Link to="/post/abc" className="link">
+          <Link to={`/post/${post.blogHash}`} className="link">
             {post.title}
           </Link>
         </span>

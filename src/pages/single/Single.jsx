@@ -14,16 +14,19 @@ export default function Single() {
   useEffect(async () => {
     if (!blogFactoryContract) return
     if (!blogHash) return
+
     const sBloghash = blogHash.toString()
+
     console.log(sBloghash)
-    const blog = await blogFactoryContract.methods.getBlogFromBlogHash(sBloghash).call()
-    console.log(blog)
-    setBlog(blog)
+    const ourBlog = await blogFactoryContract.methods.getBlogFromBlogHash(sBloghash).call()
+    console.log(ourBlog)
+    setBlog(ourBlog)
   }, [blogHash, blogFactoryContract])
 
+  console.log(blog)
   return (
     <div className="single">
-      <SinglePost />
+      <SinglePost blog={blog} />
       <Sidebar />
     </div>
   );

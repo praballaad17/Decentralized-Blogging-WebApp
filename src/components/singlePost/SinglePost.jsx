@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import "./singlePost.css";
 
-export default function SinglePost() {
+export default function SinglePost({blog}) {
+  console.log(blog)
   return (
     <div className="singlePost">
       <div className="singlePostWrapper">

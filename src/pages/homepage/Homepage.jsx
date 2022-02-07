@@ -11,19 +11,16 @@ export default function Homepage() {
   console.log(location);
   const { blogFactoryContract, userAccount } = useContract()
 
-  console.log(blogFactoryContract)
 
   useEffect(async () => {
     if (!blogFactoryContract) return
     const count = await blogFactoryContract.methods.getBlogCount().call()
     console.log(count)
 
-    // blogFactoryContract.methods.getAllBlogs().call({ from: userAccount.account }).then(r => {
-    //   console.log(r)
-    // })
 
-    const blog = await blogFactoryContract.methods.getBlog(0).call()
-    console.log(blog)
+
+    // const blog = await blogFactoryContract.methods.getBlog(0).call()
+    // console.log(blog)
 
   }, [blogFactoryContract])
 

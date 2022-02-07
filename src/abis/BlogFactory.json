@@ -5088,12 +5088,13 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0xE1733085d93C68d7B910736288c9D0368b16c43a",
-      "transactionHash": "0xd9edaf2f18968147afe26d4320cf0207dc4f7908ed72ee26b47390a0650b0678"
+      "address": "0xb7CaD051cce0fC96FfF301521E26B757E207dF04",
+      "transactionHash": "0xdf76ee8acaaf1920475355eb6b5908b3e46898de682d5a254431f498cb9ad87c"
     }
   },
   "schemaVersion": "3.4.4",
-  "updatedAt": "2022-02-06T21:50:13.715Z",
+  "updatedAt": "2022-02-07T10:39:18.214Z",
+  "networkType": "ethereum",
   "devdoc": {
     "methods": {}
   },

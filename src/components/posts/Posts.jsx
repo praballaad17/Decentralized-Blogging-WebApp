@@ -1,14 +1,29 @@
+import { useEffect, useState } from "react";
+import { useContract } from "../../context/ContractProvider";
 import Post from "../post/Post";
 import "./posts.css";
 
 export default function Posts() {
+  const { blogFactoryContract, userAccount } = useContract()
+  const [posts, setPost] = useState()
+
+  useEffect(() => {
+    if (!blogFactoryContract) return
+
+    blogFactoryContract.methods.getAllBlogs().call({ from: userAccount.account }).then(r => {
+      console.log(r)
+      setPost(r)
+    })
+
+  }, [blogFactoryContract])
   return (
     <div className="posts">
-      <Post img="https://images.pexels.com/photos/6685428/pexels-photo-6685428.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" />
-      <Post img="https://images.pexels.com/photos/6758029/pexels-photo-6758029.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" />
-      <Post img="https://images.pexels.com/photos/6711867/pexels-photo-6711867.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"/>
-      <Post img="https://images.pexels.com/photos/5490778/pexels-photo-5490778.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"/>
-      <Post img="https://images.pexels.com/photos/4916559/pexels-photo-4916559.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"/>
+      {posts && posts.map(post => (
+        <>
+          <Post post={post} />
+        </>
+      ))}
+
     </div>
   );
 }

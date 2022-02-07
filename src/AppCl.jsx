@@ -66,7 +66,8 @@ class Appcl extends Component {
       window.web3 = new Web3(window.web3.currentProvider)
     }
     else {
-      window.alert('Please use Metamask!!')
+      // window.alert('Please use Metamask!!')
+      console.log("Please use Metamask!!")
     }
   }
 

@@ -28,10 +28,6 @@ export function ContractProvider({ children }) {
             }
         }
 
-        // const getAccount = async () => {
-
-        // }
-
         const loadBlockchainData = async () => {
 
             const web3 = window.web3

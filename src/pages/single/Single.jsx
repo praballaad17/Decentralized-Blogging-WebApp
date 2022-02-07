@@ -9,11 +9,12 @@ export default function Single() {
   const { blogHash } = useParams()
   const [blog, setBlog] = useState()
   const { blogFactoryContract, userAccount } = useContract()
-  console.log(blogHash)
+  console.log(blogHash, blogFactoryContract)
 
   useEffect(async () => {
     if (!blogFactoryContract) return
     if (!blogHash) return
+
 
     const sBloghash = blogHash.toString()
 

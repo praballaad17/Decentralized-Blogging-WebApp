@@ -41,7 +41,7 @@ export default function SinglePost({ blog }) {
               </Link>
             </b>
           </span>
-          <span>1 day ago</span>
+          {/* <span>1 day ago</span> */}
         </div>
         <p className="singlePostDesc">
           {blogobj?.content}

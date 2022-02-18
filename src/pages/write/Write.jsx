@@ -14,9 +14,11 @@ export default function Write() {
 
     blogFactoryContract.methods.createBlog(title, para).send({ from: userAccount.account }).then(r => {
       console.log(r)
+      window.location = "/"
     })
 
     console.log(title, para);
+
   }
 
   return (

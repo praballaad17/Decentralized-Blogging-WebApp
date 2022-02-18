@@ -14,7 +14,7 @@ export default function Post({ post }) {
       /> */}
       <div className="postInfo">
         <div className="postCats">
-          <span className="postCat">
+          {/* <span className="postCat">
             <Link className="link" to="/posts?cat=Music">
               Music
             </Link>
@@ -23,7 +23,7 @@ export default function Post({ post }) {
             <Link className="link" to="/posts?cat=Music">
               Life
             </Link>
-          </span>
+          </span> */}
         </div>
         <span className="postTitle">
           <Link to={`/post/${post.blogHash}`} className="link">
@@ -31,7 +31,7 @@ export default function Post({ post }) {
           </Link>
         </span>
         <hr />
-        <span className="postDate">1 hour ago</span>
+        {/* <span className="postDate">1 hour ago</span> */}
       </div>
       <p className="postDesc">
         {post.content}

@@ -1,43 +1,57 @@
 import "./settings.css";
 import Sidebar from "../../components/sidebar/Sidebar";
+import { useState } from "react";
+import { useContract } from "../../context/ContractProvider";
 
 export default function Settings() {
+  const [transfer, setTranfer] = useState()
+  const [burn, setBurn] = useState()
+  const { tokenContract, userAccount } = useContract();
+
+  const handleTransfer = async (e) => {
+    e.preventDefault();
+    if (!tokenContract) return
+    console.log(transfer)
+    tokenContract.methods.transferTo(transfer?.account, transfer?.amount).send({ from: userAccount.account }).then(r => {
+      console.log(r)
+      // window.location = "/"
+    })
+  }
+
+  const handleBurn = async (e) => {
+    e.preventDefault();
+    if (!tokenContract) return
+
+    tokenContract.methods.burn(burn).send({ from: userAccount.account }).then(r => {
+      console.log(r)
+      // window.location = "/"
+    })
+  }
+
   return (
     <div className="settings">
       <div className="settingsWrapper">
-        <div className="settingsTitle">
-          <span className="settingsTitleUpdate">Update Your Account</span>
-          <span className="settingsTitleDelete">Delete Account</span>
-        </div>
-        <form className="settingsForm">
-          <label>Profile Picture</label>
-          <div className="settingsPP">
-            <img
-              src="https://images.pexels.com/photos/6685428/pexels-photo-6685428.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-              alt=""
-            />
-            <label htmlFor="fileInput">
-              <i className="settingsPPIcon far fa-user-circle"></i>{" "}
-            </label>
-            <input
-              id="fileInput"
-              type="file"
-              style={{ display: "none" }}
-              className="settingsPPInput"
-            />
+
+        <div className="settingbox">
+          <h2 className="headerTitles">Tranfer</h2>
+          <div>
+            <div>Acount: </div>
+            <input type="text" onChange={(e) => setTranfer({ ...transfer, account: e.target.value })} />
           </div>
-          <label>Username</label>
-          <input type="text" placeholder="Safak" name="name" />
-          <label>Email</label>
-          <input type="email" placeholder="safak@gmail.com" name="email" />
-          <label>Password</label>
-          <input type="password" placeholder="Password" name="password" />
-          <button className="settingsSubmitButton" type="submit">
-            Update
-          </button>
-        </form>
+          <div>
+            <div>Amount: </div>
+            <input type="text" onChange={(e) => setTranfer({ ...transfer, amount: parseInt(e.target.value) * 10 ** 2 })} />
+          </div>
+          <button className="btn btn--tran" onClick={handleTransfer}>Transfer</button>
+        </div>
+        <div className="settingbox">
+          <h2 className="headerTitles">Burn</h2>
+          <div>Burn Amount</div>
+          <input type="text" onChange={(e) => setBurn(parseInt(e.target.value) * 10 ** 2)} />
+          <button className="btn btn--burn" onClick={handleBurn}>Burn</button>
+        </div>
       </div>
-      <Sidebar />
+      {/* <Sidebar /> */}
     </div>
   );
 }

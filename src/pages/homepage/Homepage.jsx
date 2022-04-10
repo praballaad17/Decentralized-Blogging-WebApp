@@ -11,7 +11,7 @@ export default function Homepage() {
   console.log(location);
   const { blogFactoryContract, userAccount } = useContract()
 
-
+  console.log(userAccount)
   useEffect(async () => {
     if (!blogFactoryContract) return
     const count = await blogFactoryContract.methods.getBlogCount().call()

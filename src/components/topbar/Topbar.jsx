@@ -1,8 +1,16 @@
+import { useEffect, useState } from "react";
+import { useContract } from "../../context/ContractProvider";
 import { Link } from "react-router-dom";
 import "./topbar.css";
 
 export default function Topbar() {
   const user = true;
+  const { tokenContract, userAccount, balance } = useContract();
+
+
+  console.log(userAccount)
+
+
   return (
     <div className="top">
       <div className="topLeft">
@@ -19,7 +27,7 @@ export default function Topbar() {
             </Link>
           </li>
           <li className="topListItem">ABOUT</li>
-          <li className="topListItem">CONTACT</li>
+          {/* <li className="topListItem">CONTACT</li> */}
           <li className="topListItem">
             <Link className="link" to="/write">
               WRITE
@@ -29,6 +37,10 @@ export default function Topbar() {
         </ul>
       </div>
       <div className="topRight">
+        <div>
+          <div>Balance: </div>
+          <div>{balance}</div>
+        </div>
         {user ? (
           <Link className="link" to="/settings">
             <img

@@ -5,6 +5,35 @@
 .settingsWrapper {
   flex: 9;
   padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.settingbox {
+  display: flex;
+  flex-direction: column;
+  margin: 30px;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+.btn {
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 18px;
+  margin: 10px;
+  border: none;
+}
+
+.btn--tran {
+  background-color: rgb(23, 185, 23);
+
+}
+
+.btn--burn {
+  background-color: red;
+
 }
 
 .settingsTitle {
@@ -37,7 +66,7 @@
   margin-bottom: 10px;
 }
 
-.settingsPP > img {
+.settingsPP>img {
   height: 70px;
   width: 70px;
   border-radius: 20px;
@@ -63,7 +92,7 @@
   outline-style: none;
 }
 
-.settingsForm > label {
+.settingsForm>label {
   font-size: 20px;
   margin-top: 20px;
 }
@@ -72,7 +101,7 @@
   width: 30%;
 }
 
-.settingsForm > input {
+.settingsForm>input {
   color: gray;
   margin-top: 10px;
   margin-bottom: 10px;

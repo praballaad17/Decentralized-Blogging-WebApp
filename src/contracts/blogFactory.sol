@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: UNLICENSED
 
-pragma solidity >=0.4.22 <0.9.0;
+pragma solidity ^0.8.0;
 pragma experimental ABIEncoderV2;
 
 contract BlogFactory {
@@ -10,12 +10,14 @@ contract BlogFactory {
         uint256 blogId,
         string title,
         string content,
+        string heroImageHash,
         uint256 blogHash
     );
 
     struct Blog {
         string title;
         string content;
+        string heroImageHash;
         address publisher;
         uint256 blogHash;
         //We have to add timestap later....
@@ -29,18 +31,29 @@ contract BlogFactory {
     mapping(address => uint256) public userBlogCount;
     mapping(uint256 => Blog) public blogHashToBlog;
 
+    // function setImage(string memory x) public {
+    //     ipfsHash = x;
+    // }
+
+    // function getImage() public view returns (string memory) {
+    //     return ipfsHash;
+    // }
+
     function _publishBlog(
         string memory _title,
         string memory _content,
+        string memory _heroImageHash,
         uint256 _blogHash
     ) private {
-        blogs.push(Blog(_title, _content, msg.sender, _blogHash));
+        blogs.push(
+            Blog(_title, _content, _heroImageHash, msg.sender, _blogHash)
+        );
         uint256 id = blogs.length - 1;
         blogHashToBlog[_blogHash] = blogs[id];
         blogToOwner[id] = msg.sender;
         userBlogCount[msg.sender]++;
         blogCount += 1;
-        emit NewBlog(id, _title, _content, _blogHash);
+        emit NewBlog(id, _title, _content, _heroImageHash, _blogHash);
     }
 
     function _generateBlogHash() internal returns (uint256) {
@@ -53,16 +66,21 @@ contract BlogFactory {
             );
     }
 
-    function createBlog(string memory _title, string memory _content) public {
+    function createBlog(
+        string memory _title,
+        string memory _content,
+        string memory _heroImageHash
+    ) public {
         //uint randDna = _generateBlogHash(_name);
         uint256 blogHash = _generateBlogHash();
-        _publishBlog(_title, _content, blogHash);
+        _publishBlog(_title, _content, _heroImageHash, blogHash);
     }
 
     function getBlog(uint256 blogIndex)
         public
         view
         returns (
+            string memory,
             string memory,
             string memory,
             address,
@@ -72,6 +90,7 @@ contract BlogFactory {
         return (
             blogs[blogIndex].title,
             blogs[blogIndex].content,
+            blogs[blogIndex].heroImageHash,
             blogs[blogIndex].publisher,
             blogs[blogIndex].blogHash
         );
@@ -102,9 +121,19 @@ contract BlogFactory {
     function getBlogFromBlogHash(string memory _blogHash)
         public
         view
-        returns (string memory, string memory, address)
+        returns (
+            string memory,
+            string memory,
+            string memory,
+            address
+        )
     {
         uint256 bloghashInt = st2num(_blogHash);
-        return (blogHashToBlog[bloghashInt].title, blogHashToBlog[bloghashInt].content,blogHashToBlog[bloghashInt].publisher) ;
+        return (
+            blogHashToBlog[bloghashInt].title,
+            blogHashToBlog[bloghashInt].content,
+            blogHashToBlog[bloghashInt].heroImageHash,
+            blogHashToBlog[bloghashInt].publisher
+        );
     }
 }

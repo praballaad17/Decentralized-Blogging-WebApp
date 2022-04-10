@@ -3,7 +3,7 @@ import "./post.css";
 
 export default function Post({ post }) {
 
-  console.log(post.blogHash)
+  console.log(post)
   return (
     <div className="post">
 

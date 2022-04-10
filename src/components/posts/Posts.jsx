@@ -11,6 +11,7 @@ export default function Posts() {
     if (!blogFactoryContract) return
 
     blogFactoryContract.methods.getAllBlogs().call({ from: userAccount.account }).then(posts => {
+      // console.log(posts)
       setPost(posts)
     })
 

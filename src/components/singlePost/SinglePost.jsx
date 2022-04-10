@@ -12,17 +12,20 @@ export default function SinglePost({ blog }) {
       setBlogobj({
         title: blog[0],
         content: blog[1],
-        author: blog[2]
+        heroImage: blog[2],
+        author: blog[3]
       })
     }
   }, [blog])
+
+  console.log('sigle post')
 
   return (
     <div className="singlePost">
       <div className="singlePostWrapper">
         <img
           className="singlePostImg"
-          src="https://images.pexels.com/photos/6685428/pexels-photo-6685428.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+          src={`https://ipfs.infura.io/ipfs/${blogobj.heroImage}`}
           alt=""
         />
         <h1 className="singlePostTitle">

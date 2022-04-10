@@ -8,16 +8,16 @@ contract BCToken is ERC20 {
     address public admin;
 
     constructor() ERC20("BCTokens", "BCT") {
-        _mint(msg.sender, 1000 * 10**2);
+        _mint(msg.sender, 1000 * 10**18);
         admin = msg.sender;
     }
 
     function balanceOfUser(address account) public view returns (uint256) {
-        return balanceOf(account);
+        return balanceOf(account)/(10**18);
     }
 
     function transferTo(address to, uint256 amount) external {
-        // uint256 newamount = amount * 10**2;
+        amount = amount * 10**18;
         _transfer(msg.sender, to, amount);
     }
 
@@ -27,7 +27,7 @@ contract BCToken is ERC20 {
     }
 
     function burn(uint256 amount) external {
-        // uint256 newamount = amount * 10**2;
+        amount = amount * 10**18;
         _burn(msg.sender, amount);
     }
 }

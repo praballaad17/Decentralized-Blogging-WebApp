@@ -3,6 +3,7 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import { useState } from "react";
 import { useContract } from "../../context/ContractProvider";
 
+
 export default function Settings() {
   const [transfer, setTranfer] = useState()
   const [burn, setBurn] = useState()
@@ -40,14 +41,14 @@ export default function Settings() {
           </div>
           <div>
             <div>Amount: </div>
-            <input type="text" onChange={(e) => setTranfer({ ...transfer, amount: parseInt(e.target.value) * 10 ** 2 })} />
+            <input type="text" onChange={(e) => setTranfer({ ...transfer, amount: parseInt(e.target.value) })} />
           </div>
           <button className="btn btn--tran" onClick={handleTransfer}>Transfer</button>
         </div>
         <div className="settingbox">
           <h2 className="headerTitles">Burn</h2>
           <div>Burn Amount</div>
-          <input type="text" onChange={(e) => setBurn(parseInt(e.target.value) * 10 ** 2)} />
+          <input type="text" onChange={(e) => setBurn(parseInt(e.target.value) * (10 ** 18) )} />
           <button className="btn btn--burn" onClick={handleBurn}>Burn</button>
         </div>
       </div>

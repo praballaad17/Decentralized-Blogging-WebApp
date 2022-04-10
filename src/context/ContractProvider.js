@@ -76,7 +76,7 @@ export function ContractProvider({ children }) {
         if (!tokenContract) return
         const balance = await tokenContract.methods.balanceOfUser(userAccount?.account).call()
         console.log(balance)
-        setBalance(balance / 10 ** 2)
+        setBalance(balance)
     })
 
 

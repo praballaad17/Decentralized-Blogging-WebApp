@@ -48,7 +48,7 @@ export default function Settings() {
         <div className="settingbox">
           <h2 className="headerTitles">Burn</h2>
           <div>Burn Amount</div>
-          <input type="text" onChange={(e) => setBurn(parseInt(e.target.value) * (10 ** 18) )} />
+          <input type="text" onChange={(e) => setBurn(parseInt(e.target.value))} />
           <button className="btn btn--burn" onClick={handleBurn}>Burn</button>
         </div>
       </div>

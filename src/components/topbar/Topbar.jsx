@@ -39,7 +39,7 @@ export default function Topbar() {
       <div className="topRight">
         <div>
           <Link className="link" to="/settings">
-            <div>Balance: {balance}</div>
+            <div>Balance: {balance} BCT</div>
           </Link>
         </div>
         {/* {user ? (

@@ -9,6 +9,7 @@ export default function Write() {
   const [image, setImage] = useState();
   const [heroUrl, setHeroUrl] = useState();
   const [ipfsHash, setIpfsHash] = useState("");
+  const [loading, setLoading] = useState(false)
 
   const { blogFactoryContract, userAccount } = useContract()
 
@@ -21,9 +22,6 @@ export default function Write() {
       console.log(r)
       window.location = "/"
     })
-
-    console.log(title, para);
-
   }
 
   const captureFile = (e) => {
@@ -40,6 +38,7 @@ export default function Write() {
   }
   const submitfile = (e) => {
     e.preventDefault()
+    setLoading(true)
     console.log(image)
     ipfs.files.add(image, (error, result) => {
       if (error) {
@@ -47,6 +46,7 @@ export default function Write() {
         return
       }
       console.log(result[0])
+      setLoading(false)
       return setIpfsHash(result[0].hash)
     })
   }
@@ -77,7 +77,7 @@ export default function Write() {
         </div>
       }
       {heroUrl ? <div className="herobtn">
-        <button className="btn btn--tran" onClick={submitfile}>ipfs Submit</button>
+        <button className="btn btn--tran" onClick={submitfile}>{loading ? 'Uploading' : `Ipfs Upload`}</button>
       </div> : <></>}
 
       <form className="writeForm">

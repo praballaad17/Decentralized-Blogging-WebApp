@@ -7,14 +7,17 @@ import { useContract } from "../../context/ContractProvider";
 export default function Settings() {
   const [transfer, setTranfer] = useState()
   const [burn, setBurn] = useState()
+  const [message, setMessage] = useState({ transfer: false, burn: false })
   const { tokenContract, userAccount, setRefresh } = useContract();
 
   const handleTransfer = async (e) => {
     e.preventDefault();
+
     if (!tokenContract) return
     console.log(transfer)
     tokenContract.methods.transferTo(transfer?.account, transfer?.amount).send({ from: userAccount.account }).then(r => {
       console.log(r)
+      setMessage({ ...message, transfer: true })
       setRefresh(true)
       // window.location = "/"
     })
@@ -26,6 +29,7 @@ export default function Settings() {
 
     tokenContract.methods.burn(burn).send({ from: userAccount.account }).then(r => {
       console.log(r)
+      setMessage({ ...message, burn: true })
       setRefresh(true)
       // window.location = "/"
     })
@@ -46,6 +50,7 @@ export default function Settings() {
             <input type="text" onChange={(e) => setTranfer({ ...transfer, amount: parseInt(e.target.value) })} />
           </div>
           <button className="btn btn--tran" onClick={handleTransfer}>Transfer</button>
+          {message?.transfer ? "Amount is Transfered" : ""}
         </div>
         <div className="settingbox">
           <h2 className="headerTitles">Burn</h2>

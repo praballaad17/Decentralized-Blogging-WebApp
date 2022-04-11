@@ -7,7 +7,7 @@ import { useContract } from "../../context/ContractProvider";
 export default function Settings() {
   const [transfer, setTranfer] = useState()
   const [burn, setBurn] = useState()
-  const { tokenContract, userAccount } = useContract();
+  const { tokenContract, userAccount, setRefresh } = useContract();
 
   const handleTransfer = async (e) => {
     e.preventDefault();
@@ -15,6 +15,7 @@ export default function Settings() {
     console.log(transfer)
     tokenContract.methods.transferTo(transfer?.account, transfer?.amount).send({ from: userAccount.account }).then(r => {
       console.log(r)
+      setRefresh(true)
       // window.location = "/"
     })
   }
@@ -25,6 +26,7 @@ export default function Settings() {
 
     tokenContract.methods.burn(burn).send({ from: userAccount.account }).then(r => {
       console.log(r)
+      setRefresh(true)
       // window.location = "/"
     })
   }

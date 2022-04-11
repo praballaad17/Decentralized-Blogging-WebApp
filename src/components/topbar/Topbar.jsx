@@ -38,10 +38,11 @@ export default function Topbar() {
       </div>
       <div className="topRight">
         <div>
-          <div>Balance: </div>
-          <div>{balance}</div>
+          <Link className="link" to="/settings">
+            <div>Balance: {balance}</div>
+          </Link>
         </div>
-        {user ? (
+        {/* {user ? (
           <Link className="link" to="/settings">
             <img
               className="topImg"
@@ -62,8 +63,8 @@ export default function Topbar() {
               </Link>
             </li>
           </ul>
-        )}
-        <i className="topSearchIcon fas fa-search"></i>
+        )} */}
+        {/* <i className="topSearchIcon fas fa-search"></i> */}
       </div>
     </div>
   );

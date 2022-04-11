@@ -10,6 +10,11 @@
   align-items: center;
 }
 
+.sidebartip {
+  display: flex;
+  flex-direction: column;
+}
+
 .sidebarItem {
   display: flex;
   flex-direction: column;
@@ -30,13 +35,13 @@
   font-weight: 600;
 }
 
-.sidebarItem > img {
+.sidebarItem>img {
   margin-top: 15px;
   width: 250px;
   height: 250px;
 }
 
-.sidebarItem > p {
+.sidebarItem>p {
   padding: 30px;
 }
 

@@ -13,6 +13,7 @@ export function ContractProvider({ children }) {
     const [blogFactoryContract, setblogFactoryContract] = useState()
     const [tokenContract, setTokenContract] = useState()
     const [balance, setBalance] = useState()
+    const [refresh, setRefresh] = useState(false)
     // const web3 = window.web3
 
     useEffect(() => {
@@ -77,6 +78,7 @@ export function ContractProvider({ children }) {
         const balance = await tokenContract.methods.balanceOfUser(userAccount?.account).call()
         console.log(balance)
         setBalance(balance)
+        setRefresh(false)
     })
 
 
@@ -84,7 +86,9 @@ export function ContractProvider({ children }) {
         blogFactoryContract,
         userAccount,
         tokenContract,
-        balance
+        balance,
+        refresh,
+        setRefresh
     }
     return (
         <ContractContext.Provider value={value}>

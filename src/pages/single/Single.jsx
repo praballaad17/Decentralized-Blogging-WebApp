@@ -29,7 +29,7 @@ export default function Single() {
     <div className="single">
       {blog ? <>
         <SinglePost blog={blog} />
-        <Sidebar />
+        <Sidebar author={blog[3]} />
       </>
         : <></>
       }
